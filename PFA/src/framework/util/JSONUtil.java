@@ -15,6 +15,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import framework.logs.LogUtil;
+
 /**
  * JSON 객체를 핸들링할 때 필요한 기능들을 모아둔 클래스
  * @author 박유현

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 import org.mozilla.universalchardet.UniversalDetector;
 
+import framework.logs.LogUtil;
+
 /**
  * 파일을 핸들링 할 때 편한 기능을 모아둔 클래스
  * @author 박유현

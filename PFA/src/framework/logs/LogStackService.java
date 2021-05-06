@@ -18,7 +18,6 @@ import javax.servlet.annotation.WebListener;
 import framework.init.ServerConfig;
 import framework.util.DateUtil;
 import framework.util.FileUtil;
-import framework.util.LogUtil;
 
 /**
  * 일정 간격으로 로그 로컬파일을 생성하는 스케줄러 클래스

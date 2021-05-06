@@ -8,7 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import framework.init.InitConfig;
-import framework.util.LogUtil;
+import framework.logs.LogUtil;
 
 /**
  * DBMng에서 사용할 스케줄러를 초기화하는 클래스

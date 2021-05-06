@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import framework.init.ServerConfig;
+import framework.logs.LogUtil;
 import framework.servlet.controller.exceptions.DuplicateURLException;
 import framework.servlet.controller.exceptions.WrongURLException;
 import framework.servlet.controller.handler.RedirectPageHandler;
 import framework.servlet.controller.vo.PageMapperVO;
 import framework.util.ClassFounder;
-import framework.util.LogUtil;
 
 /**
  * 페이지 요청을 처리하는 클래스

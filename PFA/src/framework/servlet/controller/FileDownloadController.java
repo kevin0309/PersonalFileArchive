@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.ClientAbortException;
 
+import framework.logs.LogUtil;
 import framework.servlet.controller.exceptions.DuplicateURLException;
 import framework.servlet.controller.exceptions.WrongURLException;
 import framework.servlet.controller.handler.FileDownloadHandler;
 import framework.util.ClassFounder;
-import framework.util.LogUtil;
 
 /**
  * 파일 다운로드 요청을 제어(처리X)하는 클래스

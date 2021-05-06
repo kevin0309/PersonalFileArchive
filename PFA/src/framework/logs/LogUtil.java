@@ -1,6 +1,6 @@
-package framework.util;
+package framework.logs;
 
-import framework.logs.LogStackService;
+import framework.util.DateUtil;
 
 /**
  * 로그 콘솔출력 및 텟스트파일로의 저장을 위한 클래스

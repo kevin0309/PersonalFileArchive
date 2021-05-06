@@ -2,7 +2,7 @@ package framework.init;
 
 import javax.sql.DataSource;
 
-import framework.util.LogUtil;
+import framework.logs.LogUtil;
 
 /**
  * 서버에서 사용되는 전역 설정값만 저장해두는 클래스. VO (Value Object)

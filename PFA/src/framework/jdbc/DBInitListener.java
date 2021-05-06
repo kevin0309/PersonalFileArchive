@@ -21,7 +21,7 @@ import org.apache.tomcat.dbcp.pool2.impl.GenericObjectPoolConfig;
 
 import framework.init.InitConfig;
 import framework.init.ServerConfig;
-import framework.util.LogUtil;
+import framework.logs.LogUtil;
 import framework.util.PropertiesReader;
 
 /**

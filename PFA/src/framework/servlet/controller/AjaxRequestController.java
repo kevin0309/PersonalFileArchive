@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import framework.logs.LogUtil;
 import framework.servlet.controller.exceptions.DuplicateURLException;
 import framework.servlet.controller.exceptions.WrongURLException;
 import framework.servlet.controller.handler.AjaxRequestHandler;
 import framework.util.ClassFounder;
 import framework.util.DateUtil;
 import framework.util.JSONUtil;
-import framework.util.LogUtil;
 
 /**
  * 비동기요청을 제어(처리X)하는 클래스
