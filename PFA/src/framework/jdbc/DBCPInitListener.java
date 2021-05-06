@@ -64,9 +64,8 @@ public class DBCPInitListener implements ServletContextListener{
 			InitialContext ic = new InitialContext();
 			DataSource ds = (DataSource) ic.lookup("java:comp/env/" + dataSourceName);
 			//conn test
-			ds.getConnection();
+			ds.getConnection().close();
 			ServerConfig.setDs(ds);
-			
 		} catch (NamingException e) {
 			LogUtil.printErrLog("JNDI DataSourceName not found");
 		}
