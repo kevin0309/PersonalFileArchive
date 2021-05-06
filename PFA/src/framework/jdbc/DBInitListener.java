@@ -30,8 +30,10 @@ import framework.util.PropertiesReader;
  * @since 2019.11.11
  */
 @WebListener
-public class DBCPInitListener implements ServletContextListener{
+public class DBInitListener implements ServletContextListener{
 	private static String poolName;
+	private static String dbcpAddr;
+	private static DataSource dataSource;
 	private GenericObjectPool<PoolableConnection> connectionPool;
 	private PoolingDriver driver;
 	
@@ -65,7 +67,8 @@ public class DBCPInitListener implements ServletContextListener{
 			DataSource ds = (DataSource) ic.lookup("java:comp/env/" + dataSourceName);
 			//conn test
 			ds.getConnection().close();
-			ServerConfig.setDs(ds);
+			
+			DBInitListener.dataSource = ds;
 		} catch (NamingException e) {
 			LogUtil.printErrLog("JNDI DataSourceName not found");
 		}
@@ -102,8 +105,10 @@ public class DBCPInitListener implements ServletContextListener{
 			String serverAddr = prop.getProperty("DBServerAddress");
 			String serverPort = prop.getProperty("DBServerPort");
 			String JDBCUrl = prop.getProperty("JDBCUrl");
-			JDBCUrl = JDBCUrl.replace("{@address}", serverAddr);
-			JDBCUrl = JDBCUrl.replace("{@port}", serverPort);
+			if (JDBCUrl.indexOf("{@address}") > -1)
+				JDBCUrl = JDBCUrl.replace("{@address}", serverAddr);
+			if (JDBCUrl.indexOf("{@port}") > -1)
+				JDBCUrl = JDBCUrl.replace("{@port}", serverPort);
 			String user = prop.getProperty("dbUser");
 			String pw = prop.getProperty("dbPass");
 			String validationQuery = prop.getProperty("validationQuery");
@@ -128,9 +133,14 @@ public class DBCPInitListener implements ServletContextListener{
 			this.driver = (PoolingDriver) DriverManager.getDriver("jdbc:apache:commons:dbcp:");
 			driver.registerPool(poolName, connectionPool);
 			
-			DBCPInitListener.poolName = poolName;
+			DBInitListener.poolName = poolName;
 
 			poolableConnFactory.validateConnection(poolableConnFactory.getPool().borrowObject());
+			
+			String tempDbcpAddr = prop.getProperty("dbcpAddr");
+			if (tempDbcpAddr.indexOf("{@poolName}") > -1)
+				tempDbcpAddr = tempDbcpAddr.replaceAll("{@poolName}", poolName);
+			DBInitListener.dbcpAddr = tempDbcpAddr;
 		} catch (Exception e) {
 			throw new RuntimeException("fail to init Connection Pool", e);
 		}
@@ -144,19 +154,25 @@ public class DBCPInitListener implements ServletContextListener{
 		try {
 			InitConfig.destroyConfigWithDBAcessRequired();
 			if (!ServerConfig.isUseJNDI()) {
-				this.driver.closePool(DBCPInitListener.poolName);
-				System.out.println("[DBCPInitListener] - Close DBCP complete. poolname : " + DBCPInitListener.poolName);
+				this.driver.closePool(DBInitListener.poolName);
+				System.out.println("[DBCPInitListener] - Close DBCP complete. poolname : " + DBInitListener.poolName);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	/**
-	 * poolName 확인을 위한 메서드
-	 * @return
-	 */
 	public static String getPoolName() {
 		return poolName;
 	}
+
+	public static String getDbcpAddr() {
+		return dbcpAddr;
+	}
+
+	public static DataSource getDataSource() {
+		return dataSource;
+	}
+	
+	
 }

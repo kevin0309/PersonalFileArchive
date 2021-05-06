@@ -21,7 +21,7 @@ public class ConnectionProvider {
 	 */
 	public static Connection getConnection() {
 		if (ServerConfig.isUseJNDI()) {
-			DataSource ds = ServerConfig.getDs();
+			DataSource ds = DBInitListener.getDataSource();
 			try {
 				return ds.getConnection();
 			} catch (Exception e) {
@@ -30,17 +30,10 @@ public class ConnectionProvider {
 		}
 		else {
 			try {
-				String poolAddr;
-	
-				//for Tomcat DBCP
-				poolAddr = "jdbc:apache:commons:dbcp:";
-				String poolNm = DBCPInitListener.getPoolName();
-				poolAddr += poolNm;
-				
+				String poolAddr = DBInitListener.getDbcpAddr();
 				return DriverManager.getConnection(poolAddr);
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException();
+				throw new RuntimeException(e);
 			}
 		}
 	}

@@ -23,7 +23,6 @@ public class ServerConfig {
 	private static int serverPortNum;
 	private static String macAddr;
 	private static boolean useJNDI;
-	private static DataSource ds;
 
 	/**
 	 * 서버 전역설정값
@@ -174,11 +173,4 @@ public class ServerConfig {
 	public static void setUseJNDI(boolean useJNDI) {
 		ServerConfig.useJNDI = useJNDI;
 	}
-	public static DataSource getDs() {
-		return ds;
-	}
-	public static void setDs(DataSource ds) {
-		ServerConfig.ds = ds;
-	}
-	
 }
