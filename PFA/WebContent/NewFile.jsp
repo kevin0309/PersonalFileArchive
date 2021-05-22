@@ -10,12 +10,12 @@
 <body>
 <%
 	DBMng db = new DBMng();
-	String res = "FALSE";
+	String res = "";
 	try {
 		db.setQuery("show tables");
 		db.execute();
-		if (db.next()) {
-			res = db.getString(1);
+		while (db.next()) {
+			res += db.getString(1)+"<br>";
 		}
 	} catch (Exception e) {
 		e.printStackTrace();
