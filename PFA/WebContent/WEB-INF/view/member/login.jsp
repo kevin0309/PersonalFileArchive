@@ -33,14 +33,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<header id="header-menu" style="background: #0f0;">
-		<h3 style="margin:0;">
-			<a href="<%=ServerConfig.getServiceContainerName() %>/page/main"><img style="height: 65px;" src="<%=ServerConfig.getServiceContainerName() %>/static/imgs/symbol/blogyh_logo.png"></a>
-			<span style="font-size: medium; font-weight: bolder; display: inline-block; position: relative; top: 17px; cursor: default;"><%=ServerConfig.getProjectVersion() %></span>
-		</h3>
-	</header>
-	<div class="container" style="background: #f00;">
-		d
-	</div>
+join
 </body>
 </html>

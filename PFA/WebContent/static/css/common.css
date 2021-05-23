@@ -1,2 +1,12 @@
 @CHARSET "UTF-8";
 
+#header-menu {
+	position: fixed;
+	width: 100%;
+	padding: 5px 15px;
+}
+
+.container {
+	position: relative;
+	top: 75px;
+}
